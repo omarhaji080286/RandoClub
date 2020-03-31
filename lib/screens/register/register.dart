@@ -29,7 +29,7 @@ class _RegisterState extends State<Register> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Image.network(
-                    Constants.WEB_ADDRESS_ROOT + '/app_imgs/imgs/hiking.jpg',
+                    Constants.APP_IMGS +'/imgs/hiking.jpg',
                   ),
                   Expanded(
                     child: Container(

@@ -22,7 +22,7 @@ class MeetingPointWidget extends StatelessWidget {
               FadeInImage.assetNetwork(
                 placeholder: 'assets/loading.gif',
                 image:
-                '${Constants.WEB_ADDRESS_ROOT}/app_imgs/icons/meeting_point.png',
+                '${Constants.APP_IMGS}/icons/meeting_point.png',
                 fadeInDuration: Duration(milliseconds: 500),
                 fadeInCurve: Curves.linear,
                 fit: BoxFit.fill,

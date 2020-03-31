@@ -28,8 +28,7 @@ class _GeneralState extends State<General> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               BadgeIcon(
-                iconUrl:
-                    Constants.WEB_ADDRESS_ROOT + '/app_imgs/icons/calendar.png',
+                iconUrl: Constants.APP_IMGS + '/icons/calendar.png',
                 height: iconDim,
                 width: iconDim,
               ),
@@ -43,8 +42,7 @@ class _GeneralState extends State<General> {
               ),
               SizedBox(width: 8.0),
               BadgeIcon(
-                iconUrl:
-                    Constants.WEB_ADDRESS_ROOT + '/app_imgs/icons/minibus.png',
+                iconUrl: Constants.APP_IMGS + '/icons/minibus.png',
                 height: iconDim,
                 width: iconDim,
               ),
@@ -62,8 +60,7 @@ class _GeneralState extends State<General> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               BadgeIcon(
-                iconUrl: Constants.WEB_ADDRESS_ROOT +
-                    '/app_imgs/icons/localisation.png',
+                iconUrl: Constants.APP_IMGS + '/icons/localisation.png',
                 height: iconDim,
                 width: iconDim,
               ),
@@ -77,8 +74,7 @@ class _GeneralState extends State<General> {
               ),
               SizedBox(width: 8.0),
               BadgeIcon(
-                iconUrl:
-                    Constants.WEB_ADDRESS_ROOT + '/app_imgs/icons/food.png',
+                iconUrl: Constants.APP_IMGS + '/icons/food.png',
                 height: iconDim,
                 width: iconDim,
               ),
@@ -96,8 +92,7 @@ class _GeneralState extends State<General> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               BadgeIcon(
-                iconUrl:
-                    Constants.WEB_ADDRESS_ROOT + '/app_imgs/icons/hiker.png',
+                iconUrl: Constants.APP_IMGS + '/icons/hiker.png',
                 height: iconDim,
                 width: iconDim,
               ),
@@ -112,8 +107,7 @@ class _GeneralState extends State<General> {
               ),
               SizedBox(width: 8.0),
               BadgeIcon(
-                iconUrl: Constants.WEB_ADDRESS_ROOT +
-                    '/app_imgs/icons/difficulty.png',
+                iconUrl: Constants.APP_IMGS + '/icons/difficulty.png',
                 height: iconDim,
                 width: iconDim,
               ),

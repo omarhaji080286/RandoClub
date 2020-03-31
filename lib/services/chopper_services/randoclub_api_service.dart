@@ -19,7 +19,7 @@ abstract class RandoClubApiService extends ChopperService {
 
   static RandoClubApiService create() {
     final client = ChopperClient(
-      baseUrl: Constants.WEB_ADDRESS_ROOT + '/webservices',
+      baseUrl: Constants.WEB_SERVICES,
       services: [
         _$RandoClubApiService(),
       ],

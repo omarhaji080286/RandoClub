@@ -3,6 +3,7 @@ import 'package:randoclub/database/handle_initial_load.dart';
 import 'package:randoclub/database/models/expanded_hike.dart';
 import 'package:randoclub/screens/hike_details/hike_details.dart';
 import 'package:randoclub/util/TimeHandler.dart';
+import 'package:randoclub/util/constants.dart';
 
 class HikeCard extends StatefulWidget {
   const HikeCard({
@@ -101,7 +102,7 @@ class _HikeCardState extends State<HikeCard> {
         decoration: new BoxDecoration(
           image: new DecorationImage(
             image: new NetworkImage(
-                "http://192.168.43.211/rando_club_web/uploaded_imgs/clubs_logos/1_Randopedia.jpg"),
+                Constants.UPLOADED_IMGS + "/clubs_logos/1_Randopedia.jpg"),
             fit: BoxFit.cover,
           ),
           borderRadius: new BorderRadius.all(new Radius.circular(50.0)),

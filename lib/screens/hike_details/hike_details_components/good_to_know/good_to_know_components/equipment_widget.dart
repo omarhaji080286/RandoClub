@@ -19,7 +19,7 @@ class EquipmentWidget extends StatelessWidget {
             FadeInImage.assetNetwork(
               placeholder: 'assets/loading.gif',
               image:
-                  '${Constants.WEB_ADDRESS_ROOT}/app_imgs/icons/equipment.png',
+                  '${Constants.APP_IMGS}/icons/equipment.png',
               fadeInDuration: Duration(milliseconds: 500),
               fadeInCurve: Curves.linear,
               fit: BoxFit.fill,

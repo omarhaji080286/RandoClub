@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "899774237774",
+    "firebase_url": "https://randoclub-47c35.firebaseio.com",
+    "project_id": "randoclub-47c35",
+    "storage_bucket": "randoclub-47c35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899774237774:android:cfb11193cd2850da7d471f",
+        "android_client_info": {
+          "package_name": "com.randoservices.randoclub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899774237774-9i1u674thcv1edbd86he2r90aa39bp3d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.randoservices.randoclub",
+            "certificate_hash": "cd69b2cb0b846b96bc69081f5782d89e1e7078a1"
+          }
+        },
+        {
+          "client_id": "899774237774-52moadcr5ok5043goac3gs6onuoott6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtaXA5WQ6jj7MXi-A9NOGzU0Wg0F_Xkko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899774237774-52moadcr5ok5043goac3gs6onuoott6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -31,7 +31,6 @@ class _HikeCardState extends State<HikeCard> {
       child: GestureDetector(
         onTap: _hikeDetails,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             _clubLogoClubNameImageHike(),
             _startDateHikeDescButtons(),
@@ -44,7 +43,7 @@ class _HikeCardState extends State<HikeCard> {
   //club logo, club name, hike image
   Widget _clubLogoClubNameImageHike() {
     return Container(
-      constraints: BoxConstraints.tightFor(height: 200.0),
+      constraints: BoxConstraints.tightFor(height: 200.0, width: 400),
       child: Stack(
         overflow: Overflow.visible,
         children: <Widget>[

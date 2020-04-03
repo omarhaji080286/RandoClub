@@ -34,6 +34,7 @@ class _HikeCardInDetailsState extends State<HikeCardInDetails> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _clubLogoClubNameImageHike(),
+            SizedBox(height: 12.0),
             _startDateHikeDescButtons(),
           ],
         ),
@@ -44,6 +45,7 @@ class _HikeCardInDetailsState extends State<HikeCardInDetails> {
   //club logo, club name, hike image
   Widget _clubLogoClubNameImageHike() {
     return Container(
+      constraints: BoxConstraints.tightFor(height: 100.0, width: 200),
       child: Stack(
         overflow: Overflow.visible,
         children: <Widget>[
@@ -54,7 +56,7 @@ class _HikeCardInDetailsState extends State<HikeCardInDetails> {
             child: _clubName(),
           ),
           new Positioned(
-            left: 160.0,
+            left: 100.0,
             top: 10.0,
             child: _hikeImage(),
           ),
@@ -73,8 +75,8 @@ class _HikeCardInDetailsState extends State<HikeCardInDetails> {
       child: FadeInImage.assetNetwork(
         placeholder: 'assets/loading.gif',
         image: widget.expHike.hike.imageUrl,
-        height: 60,
-        width: 140,
+        height: 100,
+        width: 240,
         fadeInDuration: Duration(seconds: 1),
         fadeInCurve: Curves.linear,
         fit: BoxFit.fill,
@@ -139,7 +141,9 @@ class _HikeCardInDetailsState extends State<HikeCardInDetails> {
   Widget _hikeDesc() {
     return Text(
       widget.expHike.hike.description,
-      style: Theme.of(context).textTheme.headline5,
+      style: TextStyle(
+        fontSize: 14.0,
+      )
     );
   }
 
@@ -174,14 +178,14 @@ class _HikeCardInDetailsState extends State<HikeCardInDetails> {
         timeHandler.getDay() + ' ' + timeHandler.getMonthInLetter();
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-      height: 80.0,
-      width: 60.0,
+      margin: EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
+      height: 60.0,
+      width: 50.0,
       child: Text(
         displayedDate,
         textAlign: TextAlign.center,
         style: TextStyle(
-            fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 3),
+            fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 3),
       ),
       decoration: new BoxDecoration(
         borderRadius: new BorderRadius.all(new Radius.circular(10.0)),

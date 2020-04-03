@@ -23,11 +23,13 @@ class _HikeDetailsState extends State<HikeDetails> {
         child: Column(
           children: <Widget>[
             Flexible(
-                flex: 3,
+                flex: 7,
                 child: HikeCardInDetails(
-                    expHike: widget.expHike, isHikeDetailsLinkActive: false)),
+                  expHike: widget.expHike,
+                  isHikeDetailsLinkActive: false,
+                )),
             Flexible(
-              flex: 6,
+              flex: 13,
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: HikeDetailsTabs(expHike: widget.expHike),

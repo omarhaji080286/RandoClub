@@ -2,10 +2,10 @@ class Constants {
 
 
   //LOCAL
-  //static const String WEB_ADDRESS_ROOT = 'http://192.168.43.211/randoclub_local';
+  static const String WEB_ADDRESS_ROOT = 'http://192.168.43.211/randoclub_local';
 
   //PRE_PROD
-  static const String WEB_ADDRESS_ROOT = 'http://lista-courses.com/randoclub_pre_prod';
+  //static const String WEB_ADDRESS_ROOT = 'http://lista-courses.com/randoclub_pre_prod';
 
   //***********************************PROD********************************************//
   // static const String WEB_ADDRESS_ROOT = 'http://lista-courses.com/randoclub_prod'; //

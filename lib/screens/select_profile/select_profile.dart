@@ -1,6 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:randoclub/blocs/select_profile_bloc/select_profile_bloc.dart';
+import 'package:randoclub/database/randoclub_database.dart';
 import 'package:randoclub/util/constants.dart';
 import 'package:randoclub/widgets/badge_icon.dart';
 import 'package:randoclub/widgets/dot.dart';
@@ -9,7 +11,7 @@ import 'select_profile_components/organizer_btn.dart';
 import 'select_profile_components/participant_btn.dart';
 
 class SelectProfile extends StatefulWidget {
-  final FirebaseUser user;
+  final User user;
 
   const SelectProfile({Key key, this.user}) : super(key: key);
 
@@ -18,42 +20,46 @@ class SelectProfile extends StatefulWidget {
 }
 
 class _SelectProfileState extends State<SelectProfile> {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Select your profile'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          SizedBox(height: 8),
-          _buildUserInfo(),
-          SizedBox(height: 8),
-          _buildQuestion(),
-          SizedBox(height: 8),
-          _buildButtons(),
-          SizedBox(height: 8),
-          _buildDots(15),
-        ],
+    return BlocProvider<SelectProfileBloc>(
+      create: (context)=> SelectProfileBloc(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Selection du profil'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            SizedBox(height: 8),
+            _buildUserInfo(),
+            SizedBox(height: 8),
+            _buildQuestion(),
+            SizedBox(height: 8),
+            _buildButtons(),
+            SizedBox(height: 8),
+            _buildDots(15),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildUserInfo() {
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
           child: CircleAvatar(
             radius: 30.0,
-            backgroundImage: NetworkImage(widget.user.photoUrl),
+            backgroundImage: NetworkImage(widget.user.imageUrl),
             backgroundColor: Colors.transparent,
           ),
         ),
         SizedBox(width: 8),
         Text(
-          'Bienvenue ${widget.user.displayName}',
+          'Bienvenue ${widget.user.name}',
           style: TextStyle(
             color: Colors.black,
             fontSize: 14,
@@ -78,7 +84,7 @@ class _SelectProfileState extends State<SelectProfile> {
 
   Widget _buildButtons() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         Column(
           children: <Widget>[
@@ -88,7 +94,7 @@ class _SelectProfileState extends State<SelectProfile> {
               width: 60,
             ),
             SizedBox(height: 10),
-            OrganizerButton(),
+            OrganizerButton(user : widget.user),
           ],
         ),
         Column(
@@ -99,7 +105,7 @@ class _SelectProfileState extends State<SelectProfile> {
               width: 60,
             ),
             SizedBox(height: 10),
-            ParticipantButton(),
+            ParticipantButton(user : widget.user),
           ],
         ),
       ],
@@ -115,8 +121,6 @@ class _SelectProfileState extends State<SelectProfile> {
         Dot(size: size, color: Colors.grey[400]),
         SizedBox(width: 8),
         Dot(size: size, color: Colors.grey[400]),
-        /*SizedBox(width: 4),
-        Text('azeaze', style: TextStyle(color: Colors.black),),*/
       ],
     );
   }

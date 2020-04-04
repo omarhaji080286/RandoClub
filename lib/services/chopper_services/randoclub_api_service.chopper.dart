@@ -25,6 +25,15 @@ class _$RandoClubApiService extends RandoClubApiService {
   }
 
   @override
+  Future<Response> updateUser(String jsonData) {
+    final $url = '/update_user.php';
+    final $parts = <PartValue>[PartValue<String>('json_data', jsonData)];
+    final $request =
+        Request('POST', $url, client.baseUrl, parts: $parts, multipart: true);
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
   Future<Response> getInitialLoadData(String jsonData) {
     final $url = '/initial_load.php';
     final $parts = <PartValue>[PartValue<String>('json_data', jsonData)];

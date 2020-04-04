@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:randoclub/blocs/register_bloc/register_bloc.dart';
 import 'package:randoclub/blocs/register_bloc/register_event.dart';
 import 'package:randoclub/database/randoclub_database.dart';
-import 'package:randoclub/screens/select_profil/select_profile.dart';
+import 'package:randoclub/screens/select_profile/select_profile.dart';
 import 'package:randoclub/services/connectivity_service.dart';
 import 'package:randoclub/services/google_auth_service.dart';
 
@@ -51,7 +51,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
       BlocProvider.of<RegisterBloc>(context).add(RegisterEvent.add(user));
 
       Navigator.pushReplacement(context,
-          new MaterialPageRoute(builder: (context) => new SelectProfile(user : _user)));
+          new MaterialPageRoute(builder: (context) => new SelectProfile(user : user)));
 
       Fluttertoast.showToast(
           msg: 'Welcome to RandoClub', toastLength: Toast.LENGTH_SHORT);

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HikesBlocDelegate extends BlocDelegate {
+class SelectProfileBlocDelegate extends BlocDelegate {
+
 
   @override
   void onEvent(Bloc bloc, Object event) {

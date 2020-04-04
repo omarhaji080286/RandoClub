@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:randoclub/database/randoclub_database.dart';
 
 class OrganizerButton extends StatefulWidget {
+  final User user;
+
+  const OrganizerButton({Key key, this.user}) : super(key: key);
+
   @override
   _OrganizerButtonState createState() => _OrganizerButtonState();
 }

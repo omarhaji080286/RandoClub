@@ -5,11 +5,8 @@ import 'package:randoclub/database/handle_initial_load.dart';
 import 'package:randoclub/screens/loading.dart';
 import 'package:randoclub/util/basic_theme.dart';
 
-import 'blocs/hikes_bloc/hikes_bloc_delegate.dart';
-
 void main() {
   BlocSupervisor.delegate = RegisterBlocDelegate();
-  BlocSupervisor.delegate = HikesBlocDelegate();
   runApp(new RandoClub());
 }
 

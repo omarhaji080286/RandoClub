@@ -1228,7 +1228,7 @@ class Club extends DataClass implements Insertable<Club> {
   final String clubName;
   final String desc;
   final String logoUrl;
-  final String email;
+  final String clubEmail;
   final String website;
   final int userId;
   final int cityId;
@@ -1237,7 +1237,7 @@ class Club extends DataClass implements Insertable<Club> {
       @required this.clubName,
       @required this.desc,
       @required this.logoUrl,
-      @required this.email,
+      @required this.clubEmail,
       @required this.website,
       @required this.userId,
       @required this.cityId});
@@ -1254,8 +1254,8 @@ class Club extends DataClass implements Insertable<Club> {
       desc: stringType.mapFromDatabaseResponse(data['${effectivePrefix}desc']),
       logoUrl: stringType
           .mapFromDatabaseResponse(data['${effectivePrefix}logo_url']),
-      email:
-          stringType.mapFromDatabaseResponse(data['${effectivePrefix}email']),
+      clubEmail: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}club_email']),
       website:
           stringType.mapFromDatabaseResponse(data['${effectivePrefix}website']),
       userId:
@@ -1272,7 +1272,7 @@ class Club extends DataClass implements Insertable<Club> {
       clubName: serializer.fromJson<String>(json['clubName']),
       desc: serializer.fromJson<String>(json['desc']),
       logoUrl: serializer.fromJson<String>(json['logoUrl']),
-      email: serializer.fromJson<String>(json['email']),
+      clubEmail: serializer.fromJson<String>(json['clubEmail']),
       website: serializer.fromJson<String>(json['website']),
       userId: serializer.fromJson<int>(json['userId']),
       cityId: serializer.fromJson<int>(json['cityId']),
@@ -1286,7 +1286,7 @@ class Club extends DataClass implements Insertable<Club> {
       'clubName': serializer.toJson<String>(clubName),
       'desc': serializer.toJson<String>(desc),
       'logoUrl': serializer.toJson<String>(logoUrl),
-      'email': serializer.toJson<String>(email),
+      'clubEmail': serializer.toJson<String>(clubEmail),
       'website': serializer.toJson<String>(website),
       'userId': serializer.toJson<int>(userId),
       'cityId': serializer.toJson<int>(cityId),
@@ -1305,8 +1305,9 @@ class Club extends DataClass implements Insertable<Club> {
       logoUrl: logoUrl == null && nullToAbsent
           ? const Value.absent()
           : Value(logoUrl),
-      email:
-          email == null && nullToAbsent ? const Value.absent() : Value(email),
+      clubEmail: clubEmail == null && nullToAbsent
+          ? const Value.absent()
+          : Value(clubEmail),
       website: website == null && nullToAbsent
           ? const Value.absent()
           : Value(website),
@@ -1322,7 +1323,7 @@ class Club extends DataClass implements Insertable<Club> {
           String clubName,
           String desc,
           String logoUrl,
-          String email,
+          String clubEmail,
           String website,
           int userId,
           int cityId}) =>
@@ -1331,7 +1332,7 @@ class Club extends DataClass implements Insertable<Club> {
         clubName: clubName ?? this.clubName,
         desc: desc ?? this.desc,
         logoUrl: logoUrl ?? this.logoUrl,
-        email: email ?? this.email,
+        clubEmail: clubEmail ?? this.clubEmail,
         website: website ?? this.website,
         userId: userId ?? this.userId,
         cityId: cityId ?? this.cityId,
@@ -1343,7 +1344,7 @@ class Club extends DataClass implements Insertable<Club> {
           ..write('clubName: $clubName, ')
           ..write('desc: $desc, ')
           ..write('logoUrl: $logoUrl, ')
-          ..write('email: $email, ')
+          ..write('clubEmail: $clubEmail, ')
           ..write('website: $website, ')
           ..write('userId: $userId, ')
           ..write('cityId: $cityId')
@@ -1361,7 +1362,7 @@ class Club extends DataClass implements Insertable<Club> {
               $mrjc(
                   logoUrl.hashCode,
                   $mrjc(
-                      email.hashCode,
+                      clubEmail.hashCode,
                       $mrjc(website.hashCode,
                           $mrjc(userId.hashCode, cityId.hashCode))))))));
   @override
@@ -1372,7 +1373,7 @@ class Club extends DataClass implements Insertable<Club> {
           other.clubName == this.clubName &&
           other.desc == this.desc &&
           other.logoUrl == this.logoUrl &&
-          other.email == this.email &&
+          other.clubEmail == this.clubEmail &&
           other.website == this.website &&
           other.userId == this.userId &&
           other.cityId == this.cityId);
@@ -1383,7 +1384,7 @@ class ClubsCompanion extends UpdateCompanion<Club> {
   final Value<String> clubName;
   final Value<String> desc;
   final Value<String> logoUrl;
-  final Value<String> email;
+  final Value<String> clubEmail;
   final Value<String> website;
   final Value<int> userId;
   final Value<int> cityId;
@@ -1392,7 +1393,7 @@ class ClubsCompanion extends UpdateCompanion<Club> {
     this.clubName = const Value.absent(),
     this.desc = const Value.absent(),
     this.logoUrl = const Value.absent(),
-    this.email = const Value.absent(),
+    this.clubEmail = const Value.absent(),
     this.website = const Value.absent(),
     this.userId = const Value.absent(),
     this.cityId = const Value.absent(),
@@ -1402,7 +1403,7 @@ class ClubsCompanion extends UpdateCompanion<Club> {
     @required String clubName,
     @required String desc,
     @required String logoUrl,
-    @required String email,
+    @required String clubEmail,
     @required String website,
     @required int userId,
     @required int cityId,
@@ -1410,7 +1411,7 @@ class ClubsCompanion extends UpdateCompanion<Club> {
         clubName = Value(clubName),
         desc = Value(desc),
         logoUrl = Value(logoUrl),
-        email = Value(email),
+        clubEmail = Value(clubEmail),
         website = Value(website),
         userId = Value(userId),
         cityId = Value(cityId);
@@ -1419,7 +1420,7 @@ class ClubsCompanion extends UpdateCompanion<Club> {
       Value<String> clubName,
       Value<String> desc,
       Value<String> logoUrl,
-      Value<String> email,
+      Value<String> clubEmail,
       Value<String> website,
       Value<int> userId,
       Value<int> cityId}) {
@@ -1428,7 +1429,7 @@ class ClubsCompanion extends UpdateCompanion<Club> {
       clubName: clubName ?? this.clubName,
       desc: desc ?? this.desc,
       logoUrl: logoUrl ?? this.logoUrl,
-      email: email ?? this.email,
+      clubEmail: clubEmail ?? this.clubEmail,
       website: website ?? this.website,
       userId: userId ?? this.userId,
       cityId: cityId ?? this.cityId,
@@ -1488,13 +1489,13 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     );
   }
 
-  final VerificationMeta _emailMeta = const VerificationMeta('email');
-  GeneratedTextColumn _email;
+  final VerificationMeta _clubEmailMeta = const VerificationMeta('clubEmail');
+  GeneratedTextColumn _clubEmail;
   @override
-  GeneratedTextColumn get email => _email ??= _constructEmail();
-  GeneratedTextColumn _constructEmail() {
+  GeneratedTextColumn get clubEmail => _clubEmail ??= _constructClubEmail();
+  GeneratedTextColumn _constructClubEmail() {
     return GeneratedTextColumn(
-      'email',
+      'club_email',
       $tableName,
       false,
     );
@@ -1538,7 +1539,7 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
 
   @override
   List<GeneratedColumn> get $columns =>
-      [clubId, clubName, desc, logoUrl, email, website, userId, cityId];
+      [clubId, clubName, desc, logoUrl, clubEmail, website, userId, cityId];
   @override
   $ClubsTable get asDslTable => this;
   @override
@@ -1573,11 +1574,11 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     } else if (isInserting) {
       context.missing(_logoUrlMeta);
     }
-    if (d.email.present) {
-      context.handle(
-          _emailMeta, email.isAcceptableValue(d.email.value, _emailMeta));
+    if (d.clubEmail.present) {
+      context.handle(_clubEmailMeta,
+          clubEmail.isAcceptableValue(d.clubEmail.value, _clubEmailMeta));
     } else if (isInserting) {
-      context.missing(_emailMeta);
+      context.missing(_clubEmailMeta);
     }
     if (d.website.present) {
       context.handle(_websiteMeta,
@@ -1623,8 +1624,8 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     if (d.logoUrl.present) {
       map['logo_url'] = Variable<String, StringType>(d.logoUrl.value);
     }
-    if (d.email.present) {
-      map['email'] = Variable<String, StringType>(d.email.value);
+    if (d.clubEmail.present) {
+      map['club_email'] = Variable<String, StringType>(d.clubEmail.value);
     }
     if (d.website.present) {
       map['website'] = Variable<String, StringType>(d.website.value);

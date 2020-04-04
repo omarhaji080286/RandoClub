@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:randoclub/database/randoclub_database.dart';
+import 'package:randoclub/screens/create_club/create_club.dart';
 
 class OrganizerButton extends StatefulWidget {
   final User user;
@@ -41,6 +42,7 @@ class _OrganizerButtonState extends State<OrganizerButton> {
   }
 
   void redirectUser() {
-    print('OrganizerButton - user is an Organizer');
+    Navigator.pushReplacement(context,
+        new MaterialPageRoute(builder: (context) => new CreateClub()));
   }
 }

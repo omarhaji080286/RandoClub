@@ -266,7 +266,7 @@ class Clubs extends Table {
 
   TextColumn get logoUrl => text()();
 
-  TextColumn get email => text()();
+  TextColumn get clubEmail => text()();
 
   TextColumn get website => text()();
 

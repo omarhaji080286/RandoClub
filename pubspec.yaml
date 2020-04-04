@@ -64,6 +64,15 @@ dependencies:
   # plugin for launching a URL in the mobile platform. Supports iOS and Android.
   url_launcher: ^5.4.2
 
+  # plugin for iOS and Android for picking images from the image library, and taking new pictures with the camera
+  image_picker: ^0.6.4
+
+  #  plugin for Android and iOS supports cropping images
+  image_cropper: ^1.2.1
+
+  #  plugin for Android and iOS supports compressing images
+  flutter_image_compress: ^0.6.5+1
+
 
 
 dev_dependencies:

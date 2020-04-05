@@ -17,6 +17,12 @@ abstract class RandoClubApiService extends ChopperService {
       @Part('json_data') String jsonData,
       );
 
+  @Post(path: 'create_club.php')
+  @multipart
+  Future<Response> createClub(
+      @Part('json_data') String jsonData,
+      );
+
   @Post(path: 'initial_load.php')
   @multipart
   Future<Response> getInitialLoadData(

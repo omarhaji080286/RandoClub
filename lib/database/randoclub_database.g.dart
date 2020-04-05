@@ -1235,12 +1235,12 @@ class Club extends DataClass implements Insertable<Club> {
   Club(
       {@required this.clubId,
       @required this.clubName,
-      @required this.desc,
+      this.desc,
       @required this.logoUrl,
-      @required this.clubEmail,
-      @required this.website,
+      this.clubEmail,
+      this.website,
       @required this.userId,
-      @required this.cityId});
+      this.cityId});
   factory Club.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -1401,20 +1401,16 @@ class ClubsCompanion extends UpdateCompanion<Club> {
   ClubsCompanion.insert({
     @required int clubId,
     @required String clubName,
-    @required String desc,
+    this.desc = const Value.absent(),
     @required String logoUrl,
-    @required String clubEmail,
-    @required String website,
+    this.clubEmail = const Value.absent(),
+    this.website = const Value.absent(),
     @required int userId,
-    @required int cityId,
+    this.cityId = const Value.absent(),
   })  : clubId = Value(clubId),
         clubName = Value(clubName),
-        desc = Value(desc),
         logoUrl = Value(logoUrl),
-        clubEmail = Value(clubEmail),
-        website = Value(website),
-        userId = Value(userId),
-        cityId = Value(cityId);
+        userId = Value(userId);
   ClubsCompanion copyWith(
       {Value<int> clubId,
       Value<String> clubName,
@@ -1473,7 +1469,7 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     return GeneratedTextColumn(
       'desc',
       $tableName,
-      false,
+      true,
     );
   }
 
@@ -1497,7 +1493,7 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     return GeneratedTextColumn(
       'club_email',
       $tableName,
-      false,
+      true,
     );
   }
 
@@ -1509,7 +1505,7 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     return GeneratedTextColumn(
       'website',
       $tableName,
-      false,
+      true,
     );
   }
 
@@ -1533,7 +1529,7 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     return GeneratedIntColumn(
       'city_id',
       $tableName,
-      false,
+      true,
     );
   }
 
@@ -1565,8 +1561,6 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     if (d.desc.present) {
       context.handle(
           _descMeta, desc.isAcceptableValue(d.desc.value, _descMeta));
-    } else if (isInserting) {
-      context.missing(_descMeta);
     }
     if (d.logoUrl.present) {
       context.handle(_logoUrlMeta,
@@ -1577,14 +1571,10 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     if (d.clubEmail.present) {
       context.handle(_clubEmailMeta,
           clubEmail.isAcceptableValue(d.clubEmail.value, _clubEmailMeta));
-    } else if (isInserting) {
-      context.missing(_clubEmailMeta);
     }
     if (d.website.present) {
       context.handle(_websiteMeta,
           website.isAcceptableValue(d.website.value, _websiteMeta));
-    } else if (isInserting) {
-      context.missing(_websiteMeta);
     }
     if (d.userId.present) {
       context.handle(
@@ -1595,8 +1585,6 @@ class $ClubsTable extends Clubs with TableInfo<$ClubsTable, Club> {
     if (d.cityId.present) {
       context.handle(
           _cityIdMeta, cityId.isAcceptableValue(d.cityId.value, _cityIdMeta));
-    } else if (isInserting) {
-      context.missing(_cityIdMeta);
     }
     return context;
   }
@@ -3629,6 +3617,318 @@ class $PriceCategoriesTable extends PriceCategories
   }
 }
 
+class ClubContact extends DataClass implements Insertable<ClubContact> {
+  final int contactId;
+  final String contactName;
+  final String contactEmail;
+  final String contactPhone;
+  final int clubId;
+  ClubContact(
+      {@required this.contactId,
+      @required this.contactName,
+      @required this.contactEmail,
+      @required this.contactPhone,
+      @required this.clubId});
+  factory ClubContact.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+      {String prefix}) {
+    final effectivePrefix = prefix ?? '';
+    final intType = db.typeSystem.forDartType<int>();
+    final stringType = db.typeSystem.forDartType<String>();
+    return ClubContact(
+      contactId:
+          intType.mapFromDatabaseResponse(data['${effectivePrefix}contact_id']),
+      contactName: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}contact_name']),
+      contactEmail: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}contact_email']),
+      contactPhone: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}contact_phone']),
+      clubId:
+          intType.mapFromDatabaseResponse(data['${effectivePrefix}club_id']),
+    );
+  }
+  factory ClubContact.fromJson(Map<String, dynamic> json,
+      {ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return ClubContact(
+      contactId: serializer.fromJson<int>(json['contactId']),
+      contactName: serializer.fromJson<String>(json['contactName']),
+      contactEmail: serializer.fromJson<String>(json['contactEmail']),
+      contactPhone: serializer.fromJson<String>(json['contactPhone']),
+      clubId: serializer.fromJson<int>(json['clubId']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'contactId': serializer.toJson<int>(contactId),
+      'contactName': serializer.toJson<String>(contactName),
+      'contactEmail': serializer.toJson<String>(contactEmail),
+      'contactPhone': serializer.toJson<String>(contactPhone),
+      'clubId': serializer.toJson<int>(clubId),
+    };
+  }
+
+  @override
+  ClubContactsCompanion createCompanion(bool nullToAbsent) {
+    return ClubContactsCompanion(
+      contactId: contactId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(contactId),
+      contactName: contactName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(contactName),
+      contactEmail: contactEmail == null && nullToAbsent
+          ? const Value.absent()
+          : Value(contactEmail),
+      contactPhone: contactPhone == null && nullToAbsent
+          ? const Value.absent()
+          : Value(contactPhone),
+      clubId:
+          clubId == null && nullToAbsent ? const Value.absent() : Value(clubId),
+    );
+  }
+
+  ClubContact copyWith(
+          {int contactId,
+          String contactName,
+          String contactEmail,
+          String contactPhone,
+          int clubId}) =>
+      ClubContact(
+        contactId: contactId ?? this.contactId,
+        contactName: contactName ?? this.contactName,
+        contactEmail: contactEmail ?? this.contactEmail,
+        contactPhone: contactPhone ?? this.contactPhone,
+        clubId: clubId ?? this.clubId,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('ClubContact(')
+          ..write('contactId: $contactId, ')
+          ..write('contactName: $contactName, ')
+          ..write('contactEmail: $contactEmail, ')
+          ..write('contactPhone: $contactPhone, ')
+          ..write('clubId: $clubId')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => $mrjf($mrjc(
+      contactId.hashCode,
+      $mrjc(
+          contactName.hashCode,
+          $mrjc(contactEmail.hashCode,
+              $mrjc(contactPhone.hashCode, clubId.hashCode)))));
+  @override
+  bool operator ==(dynamic other) =>
+      identical(this, other) ||
+      (other is ClubContact &&
+          other.contactId == this.contactId &&
+          other.contactName == this.contactName &&
+          other.contactEmail == this.contactEmail &&
+          other.contactPhone == this.contactPhone &&
+          other.clubId == this.clubId);
+}
+
+class ClubContactsCompanion extends UpdateCompanion<ClubContact> {
+  final Value<int> contactId;
+  final Value<String> contactName;
+  final Value<String> contactEmail;
+  final Value<String> contactPhone;
+  final Value<int> clubId;
+  const ClubContactsCompanion({
+    this.contactId = const Value.absent(),
+    this.contactName = const Value.absent(),
+    this.contactEmail = const Value.absent(),
+    this.contactPhone = const Value.absent(),
+    this.clubId = const Value.absent(),
+  });
+  ClubContactsCompanion.insert({
+    @required int contactId,
+    @required String contactName,
+    @required String contactEmail,
+    @required String contactPhone,
+    @required int clubId,
+  })  : contactId = Value(contactId),
+        contactName = Value(contactName),
+        contactEmail = Value(contactEmail),
+        contactPhone = Value(contactPhone),
+        clubId = Value(clubId);
+  ClubContactsCompanion copyWith(
+      {Value<int> contactId,
+      Value<String> contactName,
+      Value<String> contactEmail,
+      Value<String> contactPhone,
+      Value<int> clubId}) {
+    return ClubContactsCompanion(
+      contactId: contactId ?? this.contactId,
+      contactName: contactName ?? this.contactName,
+      contactEmail: contactEmail ?? this.contactEmail,
+      contactPhone: contactPhone ?? this.contactPhone,
+      clubId: clubId ?? this.clubId,
+    );
+  }
+}
+
+class $ClubContactsTable extends ClubContacts
+    with TableInfo<$ClubContactsTable, ClubContact> {
+  final GeneratedDatabase _db;
+  final String _alias;
+  $ClubContactsTable(this._db, [this._alias]);
+  final VerificationMeta _contactIdMeta = const VerificationMeta('contactId');
+  GeneratedIntColumn _contactId;
+  @override
+  GeneratedIntColumn get contactId => _contactId ??= _constructContactId();
+  GeneratedIntColumn _constructContactId() {
+    return GeneratedIntColumn(
+      'contact_id',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _contactNameMeta =
+      const VerificationMeta('contactName');
+  GeneratedTextColumn _contactName;
+  @override
+  GeneratedTextColumn get contactName =>
+      _contactName ??= _constructContactName();
+  GeneratedTextColumn _constructContactName() {
+    return GeneratedTextColumn(
+      'contact_name',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _contactEmailMeta =
+      const VerificationMeta('contactEmail');
+  GeneratedTextColumn _contactEmail;
+  @override
+  GeneratedTextColumn get contactEmail =>
+      _contactEmail ??= _constructContactEmail();
+  GeneratedTextColumn _constructContactEmail() {
+    return GeneratedTextColumn(
+      'contact_email',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _contactPhoneMeta =
+      const VerificationMeta('contactPhone');
+  GeneratedTextColumn _contactPhone;
+  @override
+  GeneratedTextColumn get contactPhone =>
+      _contactPhone ??= _constructContactPhone();
+  GeneratedTextColumn _constructContactPhone() {
+    return GeneratedTextColumn(
+      'contact_phone',
+      $tableName,
+      false,
+    );
+  }
+
+  final VerificationMeta _clubIdMeta = const VerificationMeta('clubId');
+  GeneratedIntColumn _clubId;
+  @override
+  GeneratedIntColumn get clubId => _clubId ??= _constructClubId();
+  GeneratedIntColumn _constructClubId() {
+    return GeneratedIntColumn(
+      'club_id',
+      $tableName,
+      false,
+    );
+  }
+
+  @override
+  List<GeneratedColumn> get $columns =>
+      [contactId, contactName, contactEmail, contactPhone, clubId];
+  @override
+  $ClubContactsTable get asDslTable => this;
+  @override
+  String get $tableName => _alias ?? 'club_contacts';
+  @override
+  final String actualTableName = 'club_contacts';
+  @override
+  VerificationContext validateIntegrity(ClubContactsCompanion d,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    if (d.contactId.present) {
+      context.handle(_contactIdMeta,
+          contactId.isAcceptableValue(d.contactId.value, _contactIdMeta));
+    } else if (isInserting) {
+      context.missing(_contactIdMeta);
+    }
+    if (d.contactName.present) {
+      context.handle(_contactNameMeta,
+          contactName.isAcceptableValue(d.contactName.value, _contactNameMeta));
+    } else if (isInserting) {
+      context.missing(_contactNameMeta);
+    }
+    if (d.contactEmail.present) {
+      context.handle(
+          _contactEmailMeta,
+          contactEmail.isAcceptableValue(
+              d.contactEmail.value, _contactEmailMeta));
+    } else if (isInserting) {
+      context.missing(_contactEmailMeta);
+    }
+    if (d.contactPhone.present) {
+      context.handle(
+          _contactPhoneMeta,
+          contactPhone.isAcceptableValue(
+              d.contactPhone.value, _contactPhoneMeta));
+    } else if (isInserting) {
+      context.missing(_contactPhoneMeta);
+    }
+    if (d.clubId.present) {
+      context.handle(
+          _clubIdMeta, clubId.isAcceptableValue(d.clubId.value, _clubIdMeta));
+    } else if (isInserting) {
+      context.missing(_clubIdMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {contactId};
+  @override
+  ClubContact map(Map<String, dynamic> data, {String tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
+    return ClubContact.fromData(data, _db, prefix: effectivePrefix);
+  }
+
+  @override
+  Map<String, Variable> entityToSql(ClubContactsCompanion d) {
+    final map = <String, Variable>{};
+    if (d.contactId.present) {
+      map['contact_id'] = Variable<int, IntType>(d.contactId.value);
+    }
+    if (d.contactName.present) {
+      map['contact_name'] = Variable<String, StringType>(d.contactName.value);
+    }
+    if (d.contactEmail.present) {
+      map['contact_email'] = Variable<String, StringType>(d.contactEmail.value);
+    }
+    if (d.contactPhone.present) {
+      map['contact_phone'] = Variable<String, StringType>(d.contactPhone.value);
+    }
+    if (d.clubId.present) {
+      map['club_id'] = Variable<int, IntType>(d.clubId.value);
+    }
+    return map;
+  }
+
+  @override
+  $ClubContactsTable createAlias(String alias) {
+    return $ClubContactsTable(_db, alias);
+  }
+}
+
 abstract class _$RandoClubDataBase extends GeneratedDatabase {
   _$RandoClubDataBase(QueryExecutor e)
       : super(SqlTypeSystem.defaultInstance, e);
@@ -3659,6 +3959,9 @@ abstract class _$RandoClubDataBase extends GeneratedDatabase {
   $PriceCategoriesTable _priceCategories;
   $PriceCategoriesTable get priceCategories =>
       _priceCategories ??= $PriceCategoriesTable(this);
+  $ClubContactsTable _clubContacts;
+  $ClubContactsTable get clubContacts =>
+      _clubContacts ??= $ClubContactsTable(this);
   UserDao _userDao;
   UserDao get userDao => _userDao ??= UserDao(this as RandoClubDataBase);
   CountryDao _countryDao;
@@ -3690,6 +3993,9 @@ abstract class _$RandoClubDataBase extends GeneratedDatabase {
   PriceCategoryDao _priceCategoryDao;
   PriceCategoryDao get priceCategoryDao =>
       _priceCategoryDao ??= PriceCategoryDao(this as RandoClubDataBase);
+  ClubContactDao _clubContactDao;
+  ClubContactDao get clubContactDao =>
+      _clubContactDao ??= ClubContactDao(this as RandoClubDataBase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
@@ -3705,7 +4011,8 @@ abstract class _$RandoClubDataBase extends GeneratedDatabase {
         days,
         prices,
         selectedPriceCategories,
-        priceCategories
+        priceCategories,
+        clubContacts
       ];
 }
 
@@ -3730,6 +4037,9 @@ mixin _$UserDaoMixin on DatabaseAccessor<RandoClubDataBase> {
 }
 mixin _$ClubDaoMixin on DatabaseAccessor<RandoClubDataBase> {
   $ClubsTable get clubs => db.clubs;
+}
+mixin _$ClubContactDaoMixin on DatabaseAccessor<RandoClubDataBase> {
+  $ClubContactsTable get clubContacts => db.clubContacts;
 }
 mixin _$HikeStatusDaoMixin on DatabaseAccessor<RandoClubDataBase> {
   $HikeStatusesTable get hikeStatuses => db.hikeStatuses;

@@ -19,7 +19,6 @@ class SelectProfileBloc extends Bloc<SelectProfileEvent, User> {
 
   @override
   Stream<User> mapEventToState(SelectProfileEvent event) async* {
-
     final db = RandoClubDataBase.getInstance();
     UserDao userDao = UserDao(db);
 
@@ -29,14 +28,17 @@ class SelectProfileBloc extends Bloc<SelectProfileEvent, User> {
         if (event.user != null) {
           //insert user via chopper
           try {
-            user = (await userDao.getUserByEmail(event.user.email)).copyWith(userTypeId: UserModel.PARTICIPANT);
+            user = (await userDao.getUserByEmail(event.user.email))
+                .copyWith(userTypeId: UserModel.PARTICIPANT);
             Map jsonRequest = user.toJson();
-            print("SelectProfileBloc - jsonRequest : " + jsonRequest.toString());
+            print(
+                "SelectProfileBloc - jsonRequest : " + jsonRequest.toString());
             Map<String, dynamic> jsonResponse =
                 (await RandoClubApiService.create()
                         .updateUser(json.encode(jsonRequest)))
                     .body;
-            print("SelectProfileBloc - jsonResponse : " + jsonResponse.toString());
+            print("SelectProfileBloc - jsonResponse : " +
+                jsonResponse.toString());
             userDao.replace(user);
           } catch (e) {
             print("SelectProfileBloc - Error updating user : " + e.toString());
@@ -48,5 +50,4 @@ class SelectProfileBloc extends Bloc<SelectProfileEvent, User> {
         throw Exception('Event not found $event');
     }
   }
-
 }

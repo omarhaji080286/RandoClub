@@ -1,6 +1,7 @@
+
 import 'package:randoclub/database/randoclub_database.dart';
 
-enum EventType{organizerSelected, participantSelected}
+enum EventType{participantSelected}
 
 class SelectProfileEvent {
 

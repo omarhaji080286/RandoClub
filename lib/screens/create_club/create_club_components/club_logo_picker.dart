@@ -6,6 +6,7 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:randoclub/screens/create_club/create_club_components/club_logo_notification.dart';
 
 class ClubLogoPicker extends StatefulWidget {
   @override
@@ -49,6 +50,7 @@ class _ClubLogoPickerState extends State<ClubLogoPicker> {
 
     setState(() {
       _logo = result;
+      ClubLogoNotification(logo: _logo).dispatch(context);
       print('ClubLogoPicker - Logo size : ${_logo.lengthSync()}');
     });
   }

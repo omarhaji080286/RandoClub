@@ -33,6 +33,7 @@ LazyDatabase _openConnection() {
   Prices,
   SelectedPriceCategories,
   PriceCategories,
+  ClubContacts,
 ], daos: [
   UserDao,
   CountryDao,
@@ -46,6 +47,7 @@ LazyDatabase _openConnection() {
   PriceDao,
   SelectedPriceCategoryDao,
   PriceCategoryDao,
+  ClubContactDao,
 ])
 class RandoClubDataBase extends _$RandoClubDataBase {
   static RandoClubDataBase instance;
@@ -262,17 +264,17 @@ class Clubs extends Table {
 
   TextColumn get clubName => text()();
 
-  TextColumn get desc => text()();
+  TextColumn get desc => text().nullable()();
 
   TextColumn get logoUrl => text()();
 
-  TextColumn get clubEmail => text()();
+  TextColumn get clubEmail => text().nullable()();
 
-  TextColumn get website => text()();
+  TextColumn get website => text().nullable()();
 
   IntColumn get userId => integer()();
 
-  IntColumn get cityId => integer()();
+  IntColumn get cityId => integer().nullable()();
 
   @override
   Set<Column> get primaryKey => {clubId}; // ignore: sdk_version_set_literal
@@ -297,6 +299,45 @@ class ClubDao extends DatabaseAccessor<RandoClubDataBase> with _$ClubDaoMixin {
         .getSingle();
   }
 }
+
+///************************ ClubContacts table & Dao ******************************************///
+
+@DataClassName("ClubContact")
+class ClubContacts extends Table {
+  IntColumn get contactId => integer()();
+
+  TextColumn get contactName => text()();
+
+  TextColumn get contactEmail => text()();
+
+  TextColumn get contactPhone => text()();
+
+  IntColumn get clubId => integer()();
+
+  @override
+  Set<Column> get primaryKey => {contactId}; // ignore: sdk_version_set_literal
+
+}
+
+@UseDao(tables: [ClubContacts])
+class ClubContactDao extends DatabaseAccessor<RandoClubDataBase> with _$ClubContactDaoMixin {
+  final RandoClubDataBase db;
+
+  ClubContactDao(this.db) : super(db);
+
+  Stream<List<ClubContact>> watchAllContacts() => (select(clubContacts)).watch();
+
+  Future<int> insert(Insertable<ClubContact> clubContact) => into(clubContacts).insert(clubContact);
+
+  Future replace(Insertable<ClubContact> clubContact) => update(clubContacts).replace(clubContact);
+
+  Future<ClubContact> getClubContact(int contactId) {
+    return (select(clubContacts)
+      ..where((tbl) => tbl.contactId.equals(contactId)))
+        .getSingle();
+  }
+}
+
 
 ///************************ HikeStatuses table & Dao ******************************************///
 

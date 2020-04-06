@@ -5,10 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:randoclub/blocs/create_club_bloc/create_club_bloc.dart';
 import 'package:randoclub/blocs/create_club_bloc/create_club_event.dart';
 import 'package:randoclub/database/models/create_club_form.dart';
+import 'package:randoclub/database/randoclub_database.dart';
 import 'package:randoclub/screens/create_club/create_club_components/club_logo_notification.dart';
 import 'package:randoclub/screens/create_club/create_club_components/club_logo_picker.dart';
 
 class CreateClub extends StatefulWidget {
+  final User user;
+
+  const CreateClub({Key key, this.user}) : super(key: key);
+
   @override
   _CreateClubState createState() => _CreateClubState();
 }
@@ -17,6 +22,7 @@ class _CreateClubState extends State<CreateClub> {
   CreateClubBloc _createClubBloc;
 
   String _clubName;
+  String _contactName;
   String _contactPhone;
   String _contactEmail;
   File _logo;
@@ -44,14 +50,13 @@ class _CreateClubState extends State<CreateClub> {
             child: Column(
               children: <Widget>[
                 _buildClubName(),
+                _buildContactName(),
                 _buildContactPhone(),
                 _buildContactEmail(),
                 SizedBox(height: 30.0),
                 NotificationListener(
                   onNotification: (ClubLogoNotification notification) {
-                    setState(() {
-                      _logo = notification.logo;
-                    });
+                    _logo = notification.logo;
                     return true;
                   },
                   child: ClubLogoPicker(),
@@ -80,6 +85,24 @@ class _CreateClubState extends State<CreateClub> {
       },
       onSaved: (String value) {
         _clubName = value;
+      },
+    );
+  }
+
+  Widget _buildContactName() {
+    return TextFormField(
+      initialValue: widget.user.name,
+      decoration: InputDecoration(
+        labelText: 'Nom du contact',
+      ),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return 'Nom du contact requis';
+        }
+        return null;
+      },
+      onSaved: (String value) {
+        _contactName = value;
       },
     );
   }
@@ -117,7 +140,7 @@ class _CreateClubState extends State<CreateClub> {
           return 'Email requis';
         }
         if (!RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
             .hasMatch(value)) {
           return 'Email non valide';
         }
@@ -149,15 +172,15 @@ class _CreateClubState extends State<CreateClub> {
   }
 
   void createClub() {
-
     CreateClubForm createClubForm = CreateClubForm(
       clubName: _clubName,
+      contactName: _contactName,
       contactPhone: _contactPhone,
       contactEmail: _contactEmail,
-      logo : _logo,
+      logo: _logo,
     );
 
-    _createClubBloc.add(
-        CreateClubEvent.createClubFormSubmitted(createClubForm));
+    _createClubBloc
+        .add(CreateClubEvent.createClubFormSubmitted(createClubForm));
   }
 }

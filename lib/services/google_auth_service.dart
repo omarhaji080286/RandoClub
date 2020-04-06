@@ -69,8 +69,4 @@ class GoogleAuthService {
       return null;
     }
   }
-
-
-
-
 }

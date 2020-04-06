@@ -68,7 +68,7 @@ class _ClubLogoPickerState extends State<ClubLogoPicker> {
       onTap: () => getImageFile(ImageSource.gallery),
       child: CircleAvatar(
         backgroundImage: new FileImage(_logo),
-        radius: 50.0,
+        radius: 60.0,
       ),
     );
   }

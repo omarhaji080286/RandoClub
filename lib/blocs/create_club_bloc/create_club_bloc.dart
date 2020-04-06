@@ -30,6 +30,7 @@ class CreateClubBloc extends Bloc<CreateClubEvent, CreateClubForm> {
           try {
             Map jsonRequest = {
               'clubName': event.createClubForm.clubName,
+              'contactName' : event.createClubForm.contactName,
               'contactPhone': event.createClubForm.contactPhone,
               'contactEmail': event.createClubForm.contactEmail,
               'logoString' : FileManager.imageToString(event.createClubForm.logo),

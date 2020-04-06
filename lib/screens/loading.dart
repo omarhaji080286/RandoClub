@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:randoclub/screens/create_club/create_club.dart';
 import 'package:randoclub/screens/register/register.dart';
 import 'package:randoclub/services/google_auth_service.dart';
+
+import 'drawer/screen_container.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -41,10 +42,10 @@ class _LoadingState extends State<Loading> {
       Navigator.pushReplacement(
           context, new MaterialPageRoute(builder: (context) => new Register()));
     } else {
-      //Navigator.pushReplacement(
-          //context, new MaterialPageRoute(builder: (context) => new ScreenContainer()));
       Navigator.pushReplacement(
-          context, new MaterialPageRoute(builder: (context) => new CreateClub()));
+          context, new MaterialPageRoute(builder: (context) => new ScreenContainer()));
+      //Navigator.pushReplacement(
+          //context, new MaterialPageRoute(builder: (context) => new CreateClub()));
     }
 
   }

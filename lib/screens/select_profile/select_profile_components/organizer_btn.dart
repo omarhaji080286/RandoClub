@@ -43,6 +43,6 @@ class _OrganizerButtonState extends State<OrganizerButton> {
 
   void redirectUser() {
     Navigator.pushReplacement(context,
-        new MaterialPageRoute(builder: (context) => new CreateClub()));
+        new MaterialPageRoute(builder: (context) => new CreateClub(user: widget.user)));
   }
 }
